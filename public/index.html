@@ -151,6 +151,26 @@
     .pin { position: absolute; width: 16px; height: 16px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); border: 2px solid var(--surface); box-shadow: 0 2px 6px rgba(0,0,0,.25); }
     .pin.placed { background: var(--energy); }
     .pin.lead { background: var(--blue); }
+    /* Beacon: each pin bobs slightly and sends out a soft pulse ring.
+       Staggered delays/durations so they never fire in unison. */
+    .pin { animation: pin-bob 2.8s ease-in-out infinite; }
+    .pin::after { content: ""; position: absolute; inset: -2px; border-radius: inherit; background: inherit; opacity: 0; animation: pin-pulse 2.8s ease-out infinite; animation-delay: inherit; animation-duration: inherit; pointer-events: none; }
+    .pin:nth-of-type(1) { animation-delay: 0s;    animation-duration: 2.8s; }
+    .pin:nth-of-type(2) { animation-delay: -1.3s; animation-duration: 3.2s; }
+    .pin:nth-of-type(3) { animation-delay: -2.1s; animation-duration: 2.6s; }
+    .pin:nth-of-type(4) { animation-delay: -0.6s; animation-duration: 3s; }
+    .pin:nth-of-type(5) { animation-delay: -1.8s; animation-duration: 2.9s; }
+    .pin:nth-of-type(6) { animation-delay: -0.3s; animation-duration: 3.4s; }
+    .pin:nth-of-type(7) { animation-delay: -2.5s; animation-duration: 2.7s; }
+    @keyframes pin-bob {
+      0%, 100% { transform: translateY(0) rotate(-45deg); }
+      50%      { transform: translateY(-2px) rotate(-45deg); }
+    }
+    @keyframes pin-pulse {
+      0%   { transform: scale(1);   opacity: .45; }
+      70%  { transform: scale(2.3); opacity: 0; }
+      100% { transform: scale(2.3); opacity: 0; }
+    }
     .legend { display: flex; gap: 14px; margin-top: 10px; font-size: .75rem; color: var(--muted); }
     .legend span::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
     .legend .l1::before { background: var(--energy); }
@@ -225,7 +245,7 @@
       header.top .pill { display: none; }
       .stage { flex: 1 1 calc(50% - 10px); }
     }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } .pin, .pin::after { animation: none !important; } }
   </style>
 </head>
 <body>
