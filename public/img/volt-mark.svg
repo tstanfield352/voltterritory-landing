@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- VoltTerritory mark: white map pin with a lightning bolt on Electric Blue. -->
+  <rect width="64" height="64" rx="14" fill="#2563EB"/>
+  <path d="M32 53.5C25 46.5 16.5 38.5 16.5 27.5a15.5 15.5 0 0 1 31 0C47.5 38.5 39 46.5 32 53.5Z" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M34.6 15.5 24 30.5h7l-2.2 11.5L40 26.5h-7.2Z" fill="#FFFFFF"/>
+</svg>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#F8FAFC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0F172A" media="(prefers-color-scheme: dark)">
+  <title>VoltTerritory — The sales pipeline for kiosk and vending operators</title>
+  <meta name="description" content="VoltTerritory helps kiosk, vending and machine operators find locations, follow up on time, and map every placement in their territory. Join the early-access list.">
+  <link rel="canonical" href="https://www.voltterritory.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="VoltTerritory">
+  <meta property="og:description" content="The sales pipeline for kiosk and vending operators. Find locations, follow up on time, map your territory.">
+  <meta property="og:url" content="https://www.voltterritory.com/">
+  <meta property="og:image" content="https://www.voltterritory.com/img/icon-512.png">
+  <link rel="icon" type="image/svg+xml" href="img/volt-mark.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap">
+  <style>
+    /* VoltTerritory brand: Electric Blue #2563EB, Midnight Navy #0F172A,
+       Energy Green #22C55E, Cloud White #F8FAFC; Montserrat + Inter. */
+    :root {
+      --blue: #2563EB;
+      --blue-ink: #2563EB;
+      --energy: #22C55E;
+      --energy-ink: #15803D;
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --surface-2: #F1F5F9;
+      --text: #0F172A;
+      --muted: #475569;
+      --border: #E2E8F0;
+      --shadow: 0 24px 60px -20px rgba(15, 23, 42, 0.25);
+      --glow: rgba(37, 99, 235, 0.14);
+      --danger: #B42318;
+      --head: "Montserrat", Arial, sans-serif;
+      --body: "Inter", Arial, sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --blue-ink: #60A5FA;
+        --energy-ink: #4ADE80;
+        --bg: #0F172A;
+        --surface: #1E293B;
+        --surface-2: #162133;
+        --text: #F8FAFC;
+        --muted: #94A3B8;
+        --border: #334155;
+        --shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.7);
+        --glow: rgba(37, 99, 235, 0.22);
+        --danger: #FF8A7E;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 400 17px/1.6 var(--body);
+      -webkit-text-size-adjust: 100%;
+      overflow-x: hidden;
+    }
+    a { color: var(--blue-ink); }
+    h1, h2, h3 { font-family: var(--head); line-height: 1.12; margin: 0; letter-spacing: -0.01em; }
+    p { margin: 0; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+    /* ---------- header ---------- */
+    header.top { padding: 20px 0; }
+    header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
+    .brand img { border-radius: 9px; display: block; }
+    .brand strong { font: 800 1.2rem var(--head); letter-spacing: -0.01em; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 46px; padding: 0 20px; border-radius: 10px; border: 0;
+      background: var(--blue); color: #fff; font: 600 1rem var(--body);
+      text-decoration: none; cursor: pointer; transition: background .15s, transform .15s;
+    }
+    .btn:hover { background: #1D4ED8; }
+    .btn:active { transform: translateY(1px); }
+    .btn:focus-visible, input:focus-visible { outline: 3px solid var(--blue-ink); outline-offset: 2px; }
+    .btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn.ghost:hover { background: var(--surface-2); }
+    .btn.small { min-height: 40px; padding: 0 16px; font-size: .95rem; }
+
+    /* ---------- hero ---------- */
+    .hero { position: relative; padding: 48px 0 88px; }
+    .hero::before {
+      content: ""; position: absolute; inset: -120px 0 auto; height: 620px; z-index: -1;
+      background:
+        radial-gradient(600px 320px at 78% 30%, var(--glow), transparent 70%),
+        radial-gradient(420px 260px at 10% 10%, rgba(34, 197, 94, 0.10), transparent 70%);
+    }
+    .hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border);
+      background: var(--surface); color: var(--muted); font-size: .85rem; font-weight: 500;
+    }
+    .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--energy); box-shadow: 0 0 0 4px rgba(34,197,94,.18); }
+    .hero h1 { font-size: clamp(2.3rem, 5.2vw, 3.7rem); font-weight: 800; margin: 20px 0 18px; }
+    .hero h1 em { font-style: normal; color: var(--blue-ink); }
+    .lede { font-size: 1.15rem; color: var(--muted); max-width: 34em; }
+
+    .signup { margin-top: 30px; max-width: 480px; }
+    .signup .row { display: flex; gap: 10px; }
+    .signup input[type="email"] {
+      flex: 1; min-width: 0; min-height: 50px; padding: 0 16px;
+      border-radius: 10px; border: 1px solid var(--border); background: var(--surface);
+      color: var(--text); font: 400 1rem var(--body);
+    }
+    .signup input::placeholder { color: var(--muted); }
+    .signup .btn { min-height: 50px; white-space: nowrap; }
+    .signup .hp { position: absolute; left: -9999px; }
+    .signup .note { margin-top: 10px; font-size: .88rem; color: var(--muted); min-height: 1.4em; }
+    .signup .note.ok { color: var(--energy-ink); font-weight: 500; }
+    .signup .note.err { color: var(--danger); }
+
+    /* ---------- product mock ---------- */
+    .mock {
+      position: relative; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 18px; box-shadow: var(--shadow); overflow: hidden;
+    }
+    .mock-bar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+    .mock-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
+    .mock-bar span { margin-left: 8px; font-size: .8rem; color: var(--muted); font-weight: 500; }
+    .mock-body { display: grid; grid-template-columns: 1fr 1fr; }
+    .mock-col { padding: 16px; }
+    .mock-col + .mock-col { border-left: 1px solid var(--border); }
+    .mock h4 { margin: 0 0 12px; font: 600 .72rem var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    .task { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-top: 1px solid var(--border); }
+    .task:first-of-type { border-top: 0; padding-top: 0; }
+    .check { flex: none; width: 18px; height: 18px; margin-top: 2px; border-radius: 5px; border: 2px solid var(--border); }
+    .check.done { background: var(--energy); border-color: var(--energy); position: relative; }
+    .check.done::after { content: ""; position: absolute; left: 4px; top: 0; width: 5px; height: 10px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+    .task b { display: block; font-size: .9rem; font-weight: 600; }
+    .task small { display: block; font-size: .78rem; color: var(--muted); }
+    .badge { display: inline-block; margin-top: 4px; padding: 1px 8px; border-radius: 999px; font-size: .7rem; font-weight: 600; }
+    .b-blue { background: #E3F0FB; color: #0B4F8A; }
+    .b-violet { background: #E8E6FB; color: #3D2F9B; }
+    .b-amber { background: #FDF1DC; color: #7A4B00; }
+    .b-green { background: #DFF3E4; color: #155D2F; }
+    @media (prefers-color-scheme: dark) {
+      .b-blue { background: #16324A; color: #9CCBF5; }
+      .b-violet { background: #2A2650; color: #C4BDF7; }
+      .b-amber { background: #3D2E12; color: #F3C87A; }
+      .b-green { background: #173D24; color: #8FDCA9; }
+    }
+    .map {
+      position: relative; height: 216px; border-radius: 12px; overflow: hidden;
+      background:
+        linear-gradient(var(--border) 1px, transparent 1px) 0 0 / 28px 28px,
+        linear-gradient(90deg, var(--border) 1px, transparent 1px) 0 0 / 28px 28px,
+        var(--surface-2);
+    }
+    .map .road { position: absolute; background: var(--surface); border: 1px solid var(--border); }
+    .map .r1 { left: -10%; right: -10%; top: 46%; height: 14px; transform: rotate(-8deg); }
+    .map .r2 { top: -10%; bottom: -10%; left: 58%; width: 12px; transform: rotate(12deg); }
+    .pin { position: absolute; width: 16px; height: 16px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); border: 2px solid var(--surface); box-shadow: 0 2px 6px rgba(0,0,0,.25); }
+    .pin.placed { background: var(--energy); }
+    .pin.lead { background: var(--blue); }
+    .legend { display: flex; gap: 14px; margin-top: 10px; font-size: .75rem; color: var(--muted); }
+    .legend span::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+    .legend .l1::before { background: var(--energy); }
+    .legend .l2::before { background: var(--blue); }
+    .mock-stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--border); }
+    .mock-stats div { padding: 12px 16px; }
+    .mock-stats div + div { border-left: 1px solid var(--border); }
+    .mock-stats b { display: block; font: 800 1.3rem var(--head); }
+    .mock-stats small { font-size: .75rem; color: var(--muted); }
+
+    /* ---------- sections ---------- */
+    section { padding: 80px 0; }
+    .eyebrow { font: 600 .8rem var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--blue-ink); }
+    .section-head { max-width: 640px; margin-bottom: 44px; }
+    .section-head h2 { font-size: clamp(1.8rem, 3.6vw, 2.5rem); margin: 10px 0 14px; }
+    .section-head p { color: var(--muted); font-size: 1.08rem; }
+
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .feature { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 26px; }
+    .feature .ico {
+      width: 44px; height: 44px; border-radius: 11px; display: grid; place-items: center;
+      background: var(--glow); color: var(--blue-ink); margin-bottom: 18px;
+    }
+    .feature h3 { font-size: 1.12rem; margin-bottom: 8px; }
+    .feature p { color: var(--muted); font-size: .98rem; }
+
+    .band { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .types { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+    .types li {
+      padding: 10px 16px; border-radius: 999px; border: 1px solid var(--border);
+      background: var(--bg); font-weight: 500; font-size: .95rem;
+    }
+    .types li::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--energy); margin-right: 9px; vertical-align: 2px; }
+    .types-more { margin-top: 18px; color: var(--muted); font-size: .95rem; }
+    .stages { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    .stage {
+      display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+      border: 1px solid var(--border); border-radius: 12px; background: var(--surface); font-weight: 600; font-size: .95rem;
+    }
+    .stage .n { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--blue); color: #fff; font-size: .75rem; }
+    .stage.win .n { background: var(--energy); }
+    .arrow { color: var(--muted); }
+    .stage-notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 40px; }
+    .stage-notes h3 { font-size: 1.02rem; margin-bottom: 6px; }
+    .stage-notes p { color: var(--muted); font-size: .96rem; }
+
+    .cta {
+      text-align: center; border-radius: 22px; padding: 64px 24px; color: #fff;
+      background: radial-gradient(600px 300px at 80% 0%, rgba(34,197,94,.28), transparent 70%), linear-gradient(135deg, #1E3A8A, #2563EB);
+    }
+    .cta h2 { font-size: clamp(1.8rem, 3.6vw, 2.5rem); margin-bottom: 12px; }
+    .cta p { color: rgba(255,255,255,.85); font-size: 1.08rem; max-width: 34em; margin: 0 auto; }
+    .cta .btn { margin-top: 28px; background: #fff; color: #1E3A8A; }
+    .cta .btn:hover { background: #E0E7FF; }
+
+    footer { padding: 36px 0 48px; color: var(--muted); font-size: .9rem; }
+    footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+    footer .brand strong { font-size: 1rem; }
+
+    /* ---------- responsive ---------- */
+    @media (max-width: 920px) {
+      .hero .wrap { grid-template-columns: 1fr; gap: 44px; }
+      .features, .stage-notes { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 620px) {
+      body { font-size: 16px; }
+      .wrap { padding: 0 16px; }
+      .hero { padding: 28px 0 64px; }
+      .signup .row { flex-direction: column; }
+      .mock-body { grid-template-columns: 1fr; }
+      .mock-col + .mock-col { border-left: 0; border-top: 1px solid var(--border); }
+      .features, .stage-notes { grid-template-columns: 1fr; }
+      section { padding: 60px 0; }
+      .arrow { display: none; }
+      .stage { flex: 1 1 calc(50% - 10px); }
+      header.top .btn { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="VoltTerritory home">
+        <img src="img/volt-mark.svg" alt="" width="36" height="36">
+        <strong>VoltTerritory</strong>
+      </a>
+      <a class="btn small ghost" href="#join">Get early access</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <div>
+          <span class="pill"><span class="dot"></span>Now in early access</span>
+          <h1 id="hero-title">Own your territory. <em>Place more machines.</em></h1>
+          <p class="lede">VoltTerritory is the sales pipeline built for kiosk and vending operators — charging stations, vending machines, arcade games, photo booths and more. Track every location from first hello to install day, never miss a follow-up, and see your whole route on one map.</p>
+
+          <form class="signup" id="join" novalidate>
+            <label class="sr-only" for="email">Email address</label>
+            <div class="row">
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required>
+              <button class="btn" type="submit">Join the waitlist</button>
+            </div>
+            <input class="hp" name="company_url" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <p class="note" role="status" aria-live="polite">Be first in line when we open the doors. No spam, ever.</p>
+          </form>
+        </div>
+
+        <div class="mock" aria-hidden="true">
+          <div class="mock-bar"><i></i><i></i><i></i><span>Today · 4 follow-ups due</span></div>
+          <div class="mock-body">
+            <div class="mock-col">
+              <h4>Due today</h4>
+              <div class="task"><span class="check done"></span><div><b>Harbor Street Brewing</b><small>Send agreement · charging station</small><span class="badge b-amber">Site visit</span></div></div>
+              <div class="task"><span class="check"></span><div><b>Ironworks Gym</b><small>Follow up · snack &amp; drink vending</small><span class="badge b-blue">Contacted</span></div></div>
+              <div class="task"><span class="check"></span><div><b>Starlite Lanes</b><small>Propose a visit · claw machine</small><span class="badge b-violet">In conversation</span></div></div>
+              <div class="task"><span class="check"></span><div><b>Midtown Hotel</b><small>Schedule install · photo booth</small><span class="badge b-green">Agreed</span></div></div>
+            </div>
+            <div class="mock-col">
+              <h4>Territory</h4>
+              <div class="map">
+                <div class="road r1"></div><div class="road r2"></div>
+                <span class="pin placed" style="left:18%;top:22%"></span>
+                <span class="pin placed" style="left:66%;top:30%"></span>
+                <span class="pin placed" style="left:40%;top:64%"></span>
+                <span class="pin lead" style="left:30%;top:38%"></span>
+                <span class="pin lead" style="left:76%;top:62%"></span>
+                <span class="pin lead" style="left:52%;top:14%"></span>
+                <span class="pin lead" style="left:12%;top:70%"></span>
+              </div>
+              <div class="legend"><span class="l1">Placed</span><span class="l2">Prospects</span></div>
+            </div>
+          </div>
+          <div class="mock-stats">
+            <div><b>38</b><small>Open deals</small></div>
+            <div><b>12</b><small>Machines placed</small></div>
+            <div><b>3</b><small>Going cold</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="features-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Built for the route</span>
+          <h2 id="features-title">Everything you need to fill a territory</h2>
+          <p>Spreadsheets and sticky notes don't scale past a dozen locations. VoltTerritory keeps every lead, conversation and placement in one place — on your phone or your laptop.</p>
+        </div>
+        <div class="features">
+          <div class="feature">
+            <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 15l2 2 4-4"/></svg></div>
+            <h3>A Today list that runs your day</h3>
+            <p>Every stage sets a sensible next step and due date, so you open the app and know exactly who to call, text or visit.</p>
+          </div>
+          <div class="feature">
+            <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="5" height="18" rx="1.5"/><rect x="10" y="3" width="5" height="12" rx="1.5"/><rect x="17" y="3" width="4" height="8" rx="1.5"/></svg></div>
+            <h3>A pipeline board you can read at a glance</h3>
+            <p>See every location by stage, from Prospect to Landed. Spot what's stuck and what's about to close.</p>
+          </div>
+          <div class="feature">
+            <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+            <h3>Your territory on a map</h3>
+            <p>Placed machines and open prospects side by side, in street, satellite or hybrid view. Plan routes and find the gaps.</p>
+          </div>
+          <div class="feature">
+            <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg></div>
+            <h3>Cold-lead alerts</h3>
+            <p>Locations you haven't touched in a week get flagged before they slip away.</p>
+          </div>
+          <div class="feature">
+            <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></div>
+            <h3>A full activity history</h3>
+            <p>Log calls, emails, visits and texts in a tap, so anyone picking up the account knows the whole story.</p>
+          </div>
+          <div class="feature">
+            <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></div>
+            <h3>Bring your spreadsheet</h3>
+            <p>Import your existing lead list from CSV and be up and running in minutes. Install it to your home screen like an app.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" aria-labelledby="types-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">For every kind of machine</span>
+          <h2 id="types-title">If you place it in someone else's business, it fits here</h2>
+          <p>Whatever you operate, the work is the same: find good locations, win the owner over, install, and keep the relationship healthy.</p>
+        </div>
+        <ul class="types">
+          <li>Phone charging stations</li>
+          <li>Snack &amp; drink vending</li>
+          <li>Healthy &amp; micro markets</li>
+          <li>Coffee &amp; hot food kiosks</li>
+          <li>Ice &amp; water vending</li>
+          <li>Claw &amp; arcade machines</li>
+          <li>Photo booths</li>
+          <li>Massage chairs</li>
+          <li>ATMs</li>
+          <li>Bitcoin ATMs</li>
+          <li>Jukeboxes &amp; pool tables</li>
+          <li>Gumball &amp; bulk candy</li>
+          <li>Toy &amp; sticker vending</li>
+          <li>Air &amp; vacuum machines</li>
+          <li>Smart lockers</li>
+          <li>Digital signage screens</li>
+          <li>EV chargers</li>
+          <li>Laundry machines</li>
+          <li>Self-serve PPE &amp; essentials</li>
+          <li>Ticket &amp; check-in kiosks</li>
+        </ul>
+        <p class="types-more">…and anything else that earns its keep on someone else's floor.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="flow-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">How it works</span>
+          <h2 id="flow-title">From cold walk-in to machine on the floor</h2>
+          <p>A pipeline shaped around how placements actually happen.</p>
+        </div>
+        <div class="stages">
+          <div class="stage"><span class="n">1</span>Prospect</div><span class="arrow">→</span>
+          <div class="stage"><span class="n">2</span>Contacted</div><span class="arrow">→</span>
+          <div class="stage"><span class="n">3</span>In conversation</div><span class="arrow">→</span>
+          <div class="stage"><span class="n">4</span>Site visit</div><span class="arrow">→</span>
+          <div class="stage"><span class="n">5</span>Agreed</div><span class="arrow">→</span>
+          <div class="stage win"><span class="n">✓</span>Landed</div>
+        </div>
+        <div class="stage-notes">
+          <div><h3>Add locations fast</h3><p>Address suggestions as you type, business types built in, and foot-traffic notes so you can prioritize the best spots.</p></div>
+          <div><h3>Move deals forward</h3><p>Change a stage and the next step fills itself in, from "Send first outreach" to "Schedule installation."</p></div>
+          <div><h3>Keep placements healthy</h3><p>Landed locations get install dates, machine IDs and regular check-ins. Lost ones get a revisit date — not forgotten.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="cta-title">
+      <div class="wrap">
+        <div class="cta">
+          <h2 id="cta-title">Ready to grow your territory?</h2>
+          <p>We're opening VoltTerritory to a small group of kiosk and vending operators first. Join the list and we'll reach out when your spot is ready.</p>
+          <a class="btn" href="#join">Get early access</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <a class="brand" href="/"><img src="img/volt-mark.svg" alt="" width="26" height="26"><strong>VoltTerritory</strong></a>
+      <span>© <span id="year">2026</span> VoltTerritory. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // "Get early access" links: scroll to the form and put the cursor in it.
+    document.querySelectorAll('a[href="#join"]').forEach(function (a) {
+      a.addEventListener("click", function () {
+        setTimeout(function () { document.getElementById("email").focus({ preventScroll: true }); }, 350);
+      });
+    });
+
+    // Waitlist form: posts to /api/waitlist (a Cloudflare Pages Function).
+    (function () {
+      var form = document.getElementById("join");
+      var note = form.querySelector(".note");
+      var button = form.querySelector("button");
+      function say(text, kind) { note.textContent = text; note.className = "note" + (kind ? " " + kind : ""); }
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        var email = form.email.value.trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          say("Please enter a valid email address.", "err");
+          form.email.focus();
+          return;
+        }
+        button.disabled = true;
+        button.textContent = "Joining…";
+        try {
+          var res = await fetch("/api/waitlist", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: email, company_url: form.company_url.value }),
+          });
+          var data = await res.json().catch(function () { return {}; });
+          if (!res.ok) throw new Error(data.error || "Something went wrong.");
+          form.reset();
+          say("You're on the list! We'll be in touch soon.", "ok");
+          button.textContent = "You're in ✓";
+        } catch (err) {
+          say(err.message + " Please try again.", "err");
+          button.disabled = false;
+          button.textContent = "Join the waitlist";
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
