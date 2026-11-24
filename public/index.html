@@ -79,6 +79,14 @@
     .brand img { border-radius: 9px; display: block; }
     .brand strong { font: 800 1.2rem var(--head); letter-spacing: -0.01em; }
 
+    .top-actions { display: flex; align-items: center; gap: 12px; }
+    .login {
+      min-height: 40px; padding: 0 18px; border-radius: 10px; border: 0; cursor: pointer;
+      background: var(--blue); color: #fff; font: 600 .95rem var(--body); transition: background .15s;
+    }
+    .login:hover { background: #1D4ED8; }
+    .login:focus-visible { outline: 3px solid var(--blue-ink); outline-offset: 2px; }
+
     /* ---------- hero ---------- */
     .hero { position: relative; padding: 48px 0 88px; }
     .hero::before {
@@ -214,6 +222,7 @@
       .features, .stage-notes { grid-template-columns: 1fr; }
       section { padding: 60px 0; }
       .arrow { display: none; }
+      header.top .pill { display: none; }
       .stage { flex: 1 1 calc(50% - 10px); }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
@@ -226,7 +235,11 @@
         <img src="img/volt-mark.svg" alt="" width="36" height="36">
         <strong>VoltTerritory</strong>
       </a>
-      <span class="pill"><span class="dot"></span>Coming soon</span>
+      <div class="top-actions">
+        <span class="pill"><span class="dot"></span>Coming soon</span>
+        <!-- Not linked yet: point this at the dashboard login when it launches. -->
+        <button class="login" type="button">Log in</button>
+      </div>
     </div>
   </header>
 
